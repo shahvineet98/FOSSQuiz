@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -11,42 +12,42 @@ import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
 
 
 public class FOSSQuiz {
-
+	
 	public static void main(String[] args) throws IOException {
 		ArrayList selections = new ArrayList();  //Arraylist that will populate with user selections
 		
-//		try { 
-//		    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (Exception e) {
-//		    e.printStackTrace();
-//		}
-
 		final JFrame f = new JFrame("FOSS Quiz");
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setPreferredSize(new Dimension(500, 300));
-
+		
 		JLabel title = new JLabel("Welcome to the FOSS Quiz!");
 		title.setFont(title.getFont().deriveFont(30.0f));
 
 		JButton nextButton = new JButton("Next");
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 		JPanel viewPanel = new JPanel();
 		viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.PAGE_AXIS));
 
+		
 		viewPanel.add(title);
 		
 		viewPanel.add(nextButton);
-
+		viewPanel.validate();
+		viewPanel.setOpaque(true);
+		viewPanel.setBackground(new Color(255,219,77));
+		f.pack();
+		
 		f.add(viewPanel);
 
 		nextButton.addActionListener(new ActionListener() {
@@ -979,3 +980,4 @@ public class FOSSQuiz {
 
 	}
 }
+
