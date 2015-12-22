@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,27 +13,48 @@ import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 
 public class FOSSQuiz {
 	
 	public static void main(String[] args) throws IOException {
 		ArrayList selections = new ArrayList();  //Arraylist that will populate with user selections
+		Font def = new Font("Baskerville", Font.BOLD, 12);
+		
+//		try { 
+//		    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (Exception e) {
+//		    e.printStackTrace();
+//		}
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
 		
 		final JFrame f = new JFrame("FOSS Quiz");
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		f.setPreferredSize(new Dimension(500, 300));
+		f.setPreferredSize(new Dimension(600, 300));
 		
 		JLabel title = new JLabel("Welcome to the FOSS Quiz!");
-		title.setFont(title.getFont().deriveFont(30.0f));
+		title.setFont(new Font("Baskerville", Font.BOLD, 30));
+		//title.setFont(title.getFont().deriveFont(30.0f));
 
 		JButton nextButton = new JButton("Next");
+		nextButton.setFont(def);
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -61,13 +83,19 @@ public class FOSSQuiz {
 				questiontitle.setText("Question 1");
 
 				JLabel questionlabel = new JLabel();
-				questionlabel.setText("What does FOSS stand for? ");
+				questionlabel.setText("1. What does FOSS stand for? ");
+				questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 				ButtonGroup BG = new ButtonGroup();
 				JRadioButton AC1 = new JRadioButton("A) Free and Open Source Software");
 				JRadioButton AC2 = new JRadioButton("B) Free and Open Sustainable Software");
 				JRadioButton AC3 = new JRadioButton("C) Forward and Open Sustainable Software ");
 				JRadioButton AC4 = new JRadioButton("D) Freeware and Open Source Software ");
+				AC1.setFont(def);
+				AC2.setFont(def);
+				AC3.setFont(def);
+				AC4.setFont(def);
+				
 				AC1.setActionCommand("AC1");
 				AC2.setActionCommand("AC2");
 				AC3.setActionCommand("AC3");
@@ -124,9 +152,15 @@ public class FOSSQuiz {
 						}
 						if(BG.getSelection().getActionCommand().equals("AC1")){
 							resultLabel.setText("Correct!");
+							resultLabel.setForeground(Color.GREEN);
+							resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 						}else{
 							resultLabel.setText("Incorrect");
+							resultLabel.setForeground(Color.RED);
+							resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 							answerLabel.setText("Correct answer is A");
+							answerLabel.setForeground(Color.GREEN);
+							answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 						}
 						
 					}
@@ -147,7 +181,8 @@ public class FOSSQuiz {
 						questiontitle.setText("Question 2");
 
 						JLabel questionlabel = new JLabel();
-						questionlabel.setText("Who founded the Free Software Foundation? ");
+						questionlabel.setText("2. Who founded the Free Software Foundation? ");
+						questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 						ButtonGroup BG = new ButtonGroup();
 						JRadioButton AC1 = new JRadioButton("A) Linus Torvalds");
@@ -158,6 +193,10 @@ public class FOSSQuiz {
 						AC2.setActionCommand("AC2");
 						AC3.setActionCommand("AC3");
 						AC4.setActionCommand("AC4");
+						AC1.setFont(def);
+						AC2.setFont(def);
+						AC3.setFont(def);
+						AC4.setFont(def);
 
 						BG.add(AC1);
 						BG.add(AC2);
@@ -211,9 +250,15 @@ public class FOSSQuiz {
 								}
 								if(BG.getSelection().getActionCommand().equals("AC3")){
 									resultLabel.setText("Correct!");
+									resultLabel.setForeground(Color.GREEN);
+									resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 								}else{
 									resultLabel.setText("Incorrect");
-									answerLabel.setText("Correct answer is C");
+									resultLabel.setForeground(Color.RED);
+									resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+									answerLabel.setText("Correct answer is A");
+									answerLabel.setForeground(Color.GREEN);
+									answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 								}
 								
 							}
@@ -234,13 +279,20 @@ public class FOSSQuiz {
 								questiontitle.setText("Question 3");
 
 								JLabel questionlabel = new JLabel();
-								questionlabel.setText("Which of the following is a free Operating System? ");
+								questionlabel.setText("3. Which of the following is a free Operating System? ");
+								questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 								ButtonGroup BG = new ButtonGroup();
 								JRadioButton AC1 = new JRadioButton("A) Windows");
 								JRadioButton AC2 = new JRadioButton("B) GNU/Linux");
 								JRadioButton AC3 = new JRadioButton("C) MAC OS");
 								JRadioButton AC4 = new JRadioButton("D) UNIX");
+								
+								AC1.setFont(def);
+								AC2.setFont(def);
+								AC3.setFont(def);
+								AC4.setFont(def);
+								
 								AC1.setActionCommand("AC1");
 								AC2.setActionCommand("AC2");
 								AC3.setActionCommand("AC3");
@@ -297,9 +349,15 @@ public class FOSSQuiz {
 										}
 										if(BG.getSelection().getActionCommand().equals("AC2")){
 											resultLabel.setText("Correct!");
+											resultLabel.setForeground(Color.GREEN);
+											resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 										}else{
 											resultLabel.setText("Incorrect");
-											answerLabel.setText("Correct answer is B");
+											resultLabel.setForeground(Color.RED);
+											resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+											answerLabel.setText("Correct answer is A");
+											answerLabel.setForeground(Color.GREEN);
+											answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 										}
 										
 									}
@@ -320,7 +378,8 @@ public class FOSSQuiz {
 										questiontitle.setText("Question 4");
 
 										JLabel questionlabel = new JLabel();
-										questionlabel.setText("What is VLC used for? ");
+										questionlabel.setText("4. What is VLC used for? ");
+										questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 										ButtonGroup BG = new ButtonGroup();
 										JRadioButton AC1 = new JRadioButton("A) Playing Media Files");
@@ -331,6 +390,11 @@ public class FOSSQuiz {
 										AC2.setActionCommand("AC2");
 										AC3.setActionCommand("AC3");
 										AC4.setActionCommand("AC4");
+										
+										AC1.setFont(def);
+										AC2.setFont(def);
+										AC3.setFont(def);
+										AC4.setFont(def);
 
 										BG.add(AC1);
 										BG.add(AC2);
@@ -383,9 +447,15 @@ public class FOSSQuiz {
 												}
 												if(BG.getSelection().getActionCommand().equals("AC1")){
 													resultLabel.setText("Correct!");
+													resultLabel.setForeground(Color.GREEN);
+													resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 												}else{
 													resultLabel.setText("Incorrect");
+													resultLabel.setForeground(Color.RED);
+													resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 													answerLabel.setText("Correct answer is A");
+													answerLabel.setForeground(Color.GREEN);
+													answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 												}
 												
 											}
@@ -406,13 +476,20 @@ public class FOSSQuiz {
 												questiontitle.setText("Question 5");
 
 												JLabel questionlabel = new JLabel();
-												questionlabel.setText("What Organization supports the GNU Project? ");
+												questionlabel.setText("5. What Organization supports the GNU Project? ");
+												questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 												ButtonGroup BG = new ButtonGroup();
 												JRadioButton AC1 = new JRadioButton("A) The Open Source Initiative");
 												JRadioButton AC2 = new JRadioButton("B) The Free Software Foundation");
 												JRadioButton AC3 = new JRadioButton("C) Oracle");
 												JRadioButton AC4 = new JRadioButton("D) Sun Microsystems");
+												
+												AC1.setFont(def);
+												AC2.setFont(def);
+												AC3.setFont(def);
+												AC4.setFont(def);
+												
 												AC1.setActionCommand("AC1");
 												AC2.setActionCommand("AC2");
 												AC3.setActionCommand("AC3");
@@ -469,9 +546,15 @@ public class FOSSQuiz {
 														}
 														if(BG.getSelection().getActionCommand().equals("AC2")){
 															resultLabel.setText("Correct!");
+															resultLabel.setForeground(Color.GREEN);
+															resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 														}else{
 															resultLabel.setText("Incorrect");
-															answerLabel.setText("Correct answer is B");
+															resultLabel.setForeground(Color.RED);
+															resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+															answerLabel.setText("Correct answer is A");
+															answerLabel.setForeground(Color.GREEN);
+															answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 														}
 														
 													}
@@ -492,13 +575,20 @@ public class FOSSQuiz {
 														questiontitle.setText("Question 6");
 
 														JLabel questionlabel = new JLabel();
-														questionlabel.setText("A license that has minimum restrictions is known as: ");
+														questionlabel.setText("6. A license that has minimum restrictions is known as: ");
+														questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 														ButtonGroup BG = new ButtonGroup();
 														JRadioButton AC1 = new JRadioButton("A) tolerant");
 														JRadioButton AC2 = new JRadioButton("B) indulgent");
 														JRadioButton AC3 = new JRadioButton("C) copyleft");
 														JRadioButton AC4 = new JRadioButton("D) permissive");
+														
+														AC1.setFont(def);
+														AC2.setFont(def);
+														AC3.setFont(def);
+														AC4.setFont(def);
+														
 														AC1.setActionCommand("AC1");
 														AC2.setActionCommand("AC2");
 														AC3.setActionCommand("AC3");
@@ -555,9 +645,15 @@ public class FOSSQuiz {
 																}
 																if(BG.getSelection().getActionCommand().equals("AC4")){
 																	resultLabel.setText("Correct!");
+																	resultLabel.setForeground(Color.GREEN);
+																	resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																}else{
 																	resultLabel.setText("Incorrect");
-																	answerLabel.setText("Correct answer is D");
+																	resultLabel.setForeground(Color.RED);
+																	resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+																	answerLabel.setText("Correct answer is A");
+																	answerLabel.setForeground(Color.GREEN);
+																	answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																}
 																
 															}
@@ -578,13 +674,20 @@ public class FOSSQuiz {
 																questiontitle.setText("Question 7");
 
 																JLabel questionlabel = new JLabel();
-																questionlabel.setText("How many freedoms are protected by free software? ");
+																questionlabel.setText("7. How many freedoms are protected by free software? ");
+																questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 																ButtonGroup BG = new ButtonGroup();
 																JRadioButton AC1 = new JRadioButton("A) 1");
 																JRadioButton AC2 = new JRadioButton("B) 2");
 																JRadioButton AC3 = new JRadioButton("C) 3");
 																JRadioButton AC4 = new JRadioButton("D) 4");
+																
+																AC1.setFont(def);
+																AC2.setFont(def);
+																AC3.setFont(def);
+																AC4.setFont(def);
+																
 																AC1.setActionCommand("AC1");
 																AC2.setActionCommand("AC2");
 																AC3.setActionCommand("AC3");
@@ -641,9 +744,15 @@ public class FOSSQuiz {
 																		}
 																		if(BG.getSelection().getActionCommand().equals("AC4")){
 																			resultLabel.setText("Correct!");
+																			resultLabel.setForeground(Color.GREEN);
+																			resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																		}else{
 																			resultLabel.setText("Incorrect");
-																			answerLabel.setText("Correct answer is D");
+																			resultLabel.setForeground(Color.RED);
+																			resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+																			answerLabel.setText("Correct answer is A");
+																			answerLabel.setForeground(Color.GREEN);
+																			answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																		}
 																		
 																	}
@@ -664,13 +773,20 @@ public class FOSSQuiz {
 																		questiontitle.setText("Question 8");
 
 																		JLabel questionlabel = new JLabel();
-																		questionlabel.setText("Audacity, a free software, is used for what main purpose? ");
+																		questionlabel.setText("8. Audacity, a free software, is used for what main purpose? ");
+																		questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 																		ButtonGroup BG = new ButtonGroup();
 																		JRadioButton AC1 = new JRadioButton("A) Word Processing");
 																		JRadioButton AC2 = new JRadioButton("B) Video Editing");
 																		JRadioButton AC3 = new JRadioButton("C) Music Editing");
 																		JRadioButton AC4 = new JRadioButton("D) Picture Editing");
+																		
+																		AC1.setFont(def);
+																		AC2.setFont(def);
+																		AC3.setFont(def);
+																		AC4.setFont(def);
+																		
 																		AC1.setActionCommand("AC1");
 																		AC2.setActionCommand("AC2");
 																		AC3.setActionCommand("AC3");
@@ -727,9 +843,15 @@ public class FOSSQuiz {
 																				}
 																				if(BG.getSelection().getActionCommand().equals("AC3")){
 																					resultLabel.setText("Correct!");
+																					resultLabel.setForeground(Color.GREEN);
+																					resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																				}else{
 																					resultLabel.setText("Incorrect");
-																					answerLabel.setText("Correct answer is C");
+																					resultLabel.setForeground(Color.RED);
+																					resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+																					answerLabel.setText("Correct answer is A");
+																					answerLabel.setForeground(Color.GREEN);
+																					answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																				}
 																				
 																			}
@@ -750,13 +872,20 @@ public class FOSSQuiz {
 																				questiontitle.setText("Question 9");
 
 																				JLabel questionlabel = new JLabel();
-																				questionlabel.setText("What organization defines Open Source rules? ");
+																				questionlabel.setText("9. What organization defines Open Source rules? ");
+																				questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 																				ButtonGroup BG = new ButtonGroup();
 																				JRadioButton AC1 = new JRadioButton("A) The Open Source Initiative");
 																				JRadioButton AC2 = new JRadioButton("B) The Open Source Board");
 																				JRadioButton AC3 = new JRadioButton("C) The Open Source Institute");
 																				JRadioButton AC4 = new JRadioButton("D) The Open Source Committee");
+																				
+																				AC1.setFont(def);
+																				AC2.setFont(def);
+																				AC3.setFont(def);
+																				AC4.setFont(def);
+																				
 																				AC1.setActionCommand("AC1");
 																				AC2.setActionCommand("AC2");
 																				AC3.setActionCommand("AC3");
@@ -813,9 +942,15 @@ public class FOSSQuiz {
 																						}
 																						if(BG.getSelection().getActionCommand().equals("AC1")){
 																							resultLabel.setText("Correct!");
+																							resultLabel.setForeground(Color.GREEN);
+																							resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																						}else{
 																							resultLabel.setText("Incorrect");
+																							resultLabel.setForeground(Color.RED);
+																							resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																							answerLabel.setText("Correct answer is A");
+																							answerLabel.setForeground(Color.GREEN);
+																							answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																						}
 																						
 																					}
@@ -836,13 +971,20 @@ public class FOSSQuiz {
 																						questiontitle.setText("Question 10");
 
 																						JLabel questionlabel = new JLabel();
-																						questionlabel.setText("Which commercial company put its software in Open Source first?");
+																						questionlabel.setText("10. Which commercial company put its software in Open Source first?");
+																						questionlabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 
 																						ButtonGroup BG = new ButtonGroup();
 																						JRadioButton AC1 = new JRadioButton("A) Windows");
 																						JRadioButton AC2 = new JRadioButton("B) Netscape");
 																						JRadioButton AC3 = new JRadioButton("C) IBM");
 																						JRadioButton AC4 = new JRadioButton("D) Apple");
+																						
+																						AC1.setFont(def);
+																						AC2.setFont(def);
+																						AC3.setFont(def);
+																						AC4.setFont(def);
+																						
 																						AC1.setActionCommand("AC1");
 																						AC2.setActionCommand("AC2");
 																						AC3.setActionCommand("AC3");
@@ -899,9 +1041,15 @@ public class FOSSQuiz {
 																								}
 																								if(BG.getSelection().getActionCommand().equals("AC2")){
 																									resultLabel.setText("Correct!");
+																									resultLabel.setForeground(Color.GREEN);
+																									resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																								}else{
 																									resultLabel.setText("Incorrect");
-																									answerLabel.setText("Correct answer is B");
+																									resultLabel.setForeground(Color.RED);
+																									resultLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
+																									answerLabel.setText("Correct answer is A");
+																									answerLabel.setForeground(Color.GREEN);
+																									answerLabel.setFont(new Font("Baskerville", Font.BOLD, 15));
 																								}
 																								
 																							}
@@ -928,11 +1076,18 @@ public class FOSSQuiz {
 																								}
 
 																								JLabel resultText = new JLabel("This concludes the FOSS Quiz!");
-																								resultText.setFont(resultText.getFont().deriveFont(30.0f));
+																								resultText.setFont(new Font("Baskerville", Font.BOLD, 30));
 																								JLabel result = new JLabel("You got: " + numRight + " out of 10 correct");
-																								result.setFont(result.getFont().deriveFont(20.0f));
+																								result.setFont(new Font("Baskerville", Font.BOLD, 20));
 																								JLabel percentage = new JLabel((numRight*10)+"%");
-																								percentage.setFont(percentage.getFont().deriveFont(20.0f));
+																								percentage.setFont(new Font("Baskerville", Font.BOLD, 20));
+																								if(numRight >= 8){
+																									percentage.setForeground(Color.GREEN);
+																								}else if(numRight>5 && numRight<8){
+																									percentage.setForeground(Color.YELLOW);
+																								}else{
+																									percentage.setForeground(Color.RED);
+																								}
 																								
 																								resultText.setAlignmentX(Component.CENTER_ALIGNMENT);
 																								result.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -944,6 +1099,8 @@ public class FOSSQuiz {
 																								viewPanel.add(resultText);
 																								viewPanel.add(result);
 																								viewPanel.add(percentage);
+																								
+																								viewPanel.setBackground(Color.WHITE);
 
 																								f.add(viewPanel);
 
